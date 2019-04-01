@@ -34,12 +34,10 @@ header{
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 <script>
 $(function(){
-	$("#btn_submit").click(function(){
-		location.replace("<c:url value='insert' />")
-	})
+
 	
-	$("#btn_list").click(function(){
-		location.href="<c:url value='/' />"
+	$("#book_list").click(function(){
+		location.replace("<c:url value='/' />")
 	})
 	
 })
@@ -50,32 +48,32 @@ $(function(){
 
 <body>
 <section>
-<form action="<c:url value='book'/>" method="POST" class="main-box">
+<form action="<c:url value='/book'/>" method="POST" class="main-box">
 
 	
 	<label for="b_userid">사용자ID</label>
-		<input type="text" id="b_userid" class="in-box" name="b_userid" value="${BOOK.b_userid}"><br/>
+		<input type="text" id="b_userid" class="in-box" name="b_userid" value="${bookVO.b_userid}" ><br/>
 		
 	<label for="b_isbn">도서코드</label>
-		<input type="text" id="b_isbn" class="in-box" name="b_isbn" value="${BOOK.b_isbn}"><br/>
+		<input type="text" id="b_isbn" class="in-box" name="b_isbn" ><br/>
 		
 	<label for="b_title">도서제목</label>
-		<input type="text" id="b_title" class="in-box" name="b_title" value="${BOOK.b_title}"><br/>	
+		<input type="text" id="b_title" class="in-box" name="b_title" ><br/>	
 	
 	<label for="b_date">독서일자</label>
-		<input type="date" id="b_date" class="in-box" name="b_date" value="${BOOK.b_date}"><br/>
+		<input type="text" id="b_date" class="in-box" name="b_date" ><br/>
 		
 		
 	<label for="b_text">내용</label>
-		<textarea rows="5" id="b_text" class="in-box" name="b_text">${BOOK.b_text}</textarea><br/>
+		<textarea rows="5" id="b_text" class="in-box" name="b_text"></textarea><br/>
 	
 	<label for="b_star">별점</label>
-		<input type="text" id="b_star" class="in-box" name="b_star" value="${BOOK.b_star}"><br/>	
+		<input type="text" id="b_star" class="in-box" name="b_star"><br/>	
 	
 	<hr/>
 	<button type="submit" id="btn_submit">확인</button>
 	<button type="reset">취소</button>
-	<button type="button" id="btn_list">목록보기</button>
+	<button type="button" id="book_list">목록보기</button>
 
 	
 </form>			

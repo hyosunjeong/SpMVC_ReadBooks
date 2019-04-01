@@ -30,12 +30,14 @@ public class BookService {
 
 	public int insert(BookVO bookVO) {
 		int ret = bDao.insert(bookVO);
+		
 		return ret;
 	}
 
-//	public int update(BookVO bookVO) {
-//		return 0;
-//	}
+	public int update(BookVO bookVO) {
+		int ret =bDao.update(bookVO);
+		return ret;
+	}
 
 	public int delete(long b_id) {
 		return bDao.delete(b_id);

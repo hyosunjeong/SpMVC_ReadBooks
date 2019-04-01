@@ -1,8 +1,7 @@
 package com.biz.readbook.controller;
 
 import java.time.LocalDateTime;
-
-import javax.servlet.http.HttpSession;
+import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.biz.readbook.model.BookVO;
 import com.biz.readbook.service.BookService;
@@ -21,7 +21,7 @@ public class BookController {
 	BookService bService;
 
 	@ModelAttribute("bookVO")
-	public BookVO newBookBO() {
+	public BookVO newBookVO() {
 		return new BookVO();
 	}
 	
@@ -34,28 +34,56 @@ public class BookController {
 		BookVO bookVO = new BookVO();
 		
 		LocalDateTime ld = LocalDateTime.now();
-		bookVO.setB_date(ld.toString());
+		DateTimeFormatter fd = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		
-		bookVO.setB_userid("test");
+		String today = ld.format(fd);
+		bookVO.setB_date(today);
 		
-		model.addAttribute("BOOK", bookVO);
-		return "book_write";
+		model.addAttribute("BOOKS", bookVO);
+		return "body/book_write";
 	}
 	
-
+/*
+ * 데이터 입력
+ */
 	@RequestMapping(value="book",method=RequestMethod.POST)
-	public String book(@ModelAttribute BookVO bookVO) {
+	public String book_insert(@ModelAttribute BookVO bookVO) {
 		int ret = bService.insert(bookVO);
-		return "home";
-	}
-	
-	@RequestMapping(value="insert",method=RequestMethod.POST)
-	public String insert(@ModelAttribute ("bookVO")BookVO bookVO,Model model) {
-		long id = bookVO.getB_id();
-		bookVO =bService.findById(id);
 		return "redirect:/";
 	}
 	
+	@RequestMapping(value="update",method=RequestMethod.POST)
+	public String book_update(@ModelAttribute BookVO bookVO) {
+		int ret = bService.update(bookVO);
+		return "redirect:/";
+	}
 	
+	@RequestMapping(value="/view",method=RequestMethod.GET)
+	public String view(@ModelAttribute("bookVO") BookVO bookVO, Model model) {
+		
+		long id = bookVO.getB_id();
+		bookVO = bService.findById(id);
+		
+		model.addAttribute("bookVO", bookVO);
+		
+		return "body/book_view";
+	}
+	
+	
+	@RequestMapping(value="delete", method=RequestMethod.GET)
+	public String delete(@RequestParam long id) {
+		bService.delete(id);
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value="update",method=RequestMethod.GET)
+	public String update(@ModelAttribute("bookVO")BookVO bookVO, Model model) {
+		long id = bookVO.getB_id();
+		bookVO = bService.findById(id);
+		
+		model.addAttribute("BOOK", bookVO);
+		
+		return "body/book_update";
+	}
 	
 }
