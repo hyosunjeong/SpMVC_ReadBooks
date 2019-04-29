@@ -21,7 +21,7 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
 	
-		model.addAttribute("BOOK", bService.selectAll());
+		model.addAttribute("BOOKS", bService.selectAll());
 		
 		return "home";
 	}

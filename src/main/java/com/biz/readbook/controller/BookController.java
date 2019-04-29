@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.biz.readbook.model.BookVO;
 import com.biz.readbook.service.BookService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 public class BookController {
 	
@@ -48,6 +51,8 @@ public class BookController {
  */
 	@RequestMapping(value="book",method=RequestMethod.POST)
 	public String book_insert(@ModelAttribute BookVO bookVO) {
+		
+		log.debug(bookVO.toString());
 		int ret = bService.insert(bookVO);
 		return "redirect:/";
 	}
@@ -58,10 +63,12 @@ public class BookController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value="/view",method=RequestMethod.GET)
+	@RequestMapping(value="view",method=RequestMethod.GET)
 	public String view(@ModelAttribute("bookVO") BookVO bookVO, Model model) {
 		
 		long id = bookVO.getB_id();
+		log.debug(""+id);
+		
 		bookVO = bService.findById(id);
 		
 		model.addAttribute("bookVO", bookVO);
@@ -71,8 +78,8 @@ public class BookController {
 	
 	
 	@RequestMapping(value="delete", method=RequestMethod.GET)
-	public String delete(@RequestParam long id) {
-		bService.delete(id);
+	public String delete(@RequestParam("b_id") long b_id) {
+		bService.delete(b_id);
 		return "redirect:/";
 	}
 	

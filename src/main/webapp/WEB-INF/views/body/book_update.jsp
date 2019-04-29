@@ -53,6 +53,7 @@ $(function(){
 <section>
 <form action="<c:url value='/update'/>" method="POST" class="main-box">
 
+	<input type="hidden" id="b_id" class="in-box" name="b_id" value="${BOOK.b_id}"><br/>
 	
 	<label for="b_userid">사용자ID</label>
 		<input type="text" id="b_userid" class="in-box" name="b_userid" value="${BOOK.b_userid}"><br/>

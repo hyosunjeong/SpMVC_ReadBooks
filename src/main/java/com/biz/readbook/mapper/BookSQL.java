@@ -8,12 +8,12 @@ public class BookSQL {
 		SQL sql = new SQL()
 				.INSERT_INTO("tbl_books")
 				.INTO_COLUMNS("b_id").INTO_VALUES("SEQ_BOOK.NEXTVAL")
-				.INTO_COLUMNS("b_userid").INTO_VALUES("#{b_userid}")
-				.INTO_COLUMNS("b_isbn").INTO_VALUES("#{b_isbn}")
-				.INTO_COLUMNS("b_title").INTO_VALUES("#{b_title}")
-				.INTO_COLUMNS("b_date").INTO_VALUES("#{b_date}")
-				.INTO_COLUMNS("b_star").INTO_VALUES("#{b_star}")
-				.INTO_COLUMNS("b_text").INTO_VALUES("#{b_text}");
+				.INTO_COLUMNS("b_userid").INTO_VALUES("#{b_userid,jdbcType=VARCHAR}")
+				.INTO_COLUMNS("b_isbn").INTO_VALUES("#{b_isbn,jdbcType=VARCHAR}")
+				.INTO_COLUMNS("b_title").INTO_VALUES("#{b_title,jdbcType=VARCHAR}")
+				.INTO_COLUMNS("b_date").INTO_VALUES("#{b_date,jdbcType=VARCHAR}")
+				.INTO_COLUMNS("b_star").INTO_VALUES("#{b_star,jdbcType=VARCHAR}")
+				.INTO_COLUMNS("b_text").INTO_VALUES("#{b_text,jdbcType=VARCHAR}");
 				
 				return sql.toString();
 		

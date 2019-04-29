@@ -40,6 +40,9 @@ $(function(){
 		location.replace("<c:url value='/' />")
 	})
 	
+	
+	
+	
 })
 
 

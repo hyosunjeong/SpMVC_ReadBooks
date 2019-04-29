@@ -31,14 +31,14 @@ header{
 <script>
 	$(function(){
 		$("#book_update").click(function(){
-			let id = ${bookVO.id}
-			location.href="<c:url value='update' />" + "?id="+id
+			let id = ${bookVO.b_id}
+			location.href="<c:url value='update' />" + "?b_id="+id
 		})
 		
 		$("#book_delete").click(function(){
-			let id = ${bookVO.id}
+			let id = ${bookVO.b_id}
 			if(confirm("삭제할까요?")){
-				location.href="<c:url value='delete'/>" + "?id="+id
+				location.href="<c:url value='delete'/>" + "?b_id="+id
 			}
 		})
 		

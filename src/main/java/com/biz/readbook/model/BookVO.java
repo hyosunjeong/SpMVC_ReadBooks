@@ -18,7 +18,7 @@ public class BookVO {
 	private String b_isbn;
 	private String b_title;
 	private String b_date;
-	private int b_star;
+	private float b_star;
 	private String b_text;
 
 }

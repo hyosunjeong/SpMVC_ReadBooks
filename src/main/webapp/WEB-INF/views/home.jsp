@@ -62,7 +62,7 @@ td:first-child, th:first-child {
 		
 		$(".book_tr").click(function(){
 		let id = $(this).attr("data-id")
-		location.href="<c:url value='/view' />" + "?id="+id
+		location.href="<c:url value='/view' />" + "?b_id="+id
 		
 	})
 })
@@ -88,11 +88,11 @@ td:first-child, th:first-child {
 			
 			<c:otherwise>
 				<c:forEach items="${BOOKS}" var="book" varStatus="i">
-					<tr class="book_tr" data-id="${book.id}">
+					<tr class="book_tr" data-id="${book.b_id}">
 					<td>${i.count}</td>
 					<td>${book.b_userid}</td>
 					<td>${book.b_isbn}</td>
-					<td>${book.b_subject}</td>
+					<td>${book.b_title}</td>
 					<td>${book.b_date}</td>
 					<td>${book.b_star}</td>
 					</tr>
